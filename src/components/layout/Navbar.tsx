@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -11,12 +12,9 @@ import {
   GraduationCap,
   School,
   Calendar,
-  Newspaper,
   Users,
   Trophy,
-  Palette,
   Briefcase,
-  Phone,
   ChevronDown,
   Command,
 } from 'lucide-react';
@@ -99,10 +97,16 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-[#FCD34D] to-[#C99600] flex items-center justify-center gold-glow"
+              whileHover={{ scale: 1.05 }}
+              className="relative w-12 h-12 rounded-xl overflow-hidden"
             >
-              <GraduationCap className="w-7 h-7 text-black" />
+              <Image
+                src="/images/fcs-logo.webp"
+                alt="Forsyth County Schools"
+                fill
+                className="object-cover"
+                priority
+              />
             </motion.div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-white leading-tight">
@@ -153,12 +157,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                     <ListItem href="/academics/ap-ib" title="AP & IB Programs" icon={<GraduationCap className="w-4 h-4 text-[#FCD34D]" />}>
                       Advanced placement opportunities
                     </ListItem>
-                    <ListItem href="/academics/stem" title="STEM Education" icon={<GraduationCap className="w-4 h-4 text-[#FCD34D]" />}>
-                      Science, technology, engineering & math
-                    </ListItem>
-                    <ListItem href="/arts" title="Fine Arts" icon={<Palette className="w-4 h-4 text-[#FCD34D]" />}>
-                      Music, theater & visual arts
-                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -171,18 +169,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                     'bg-transparent text-white hover:text-[#FCD34D] hover:bg-[#FCD34D]/10'
                   )}>
                     Athletics
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-
-              {/* News */}
-              <NavigationMenuItem>
-                <Link href="/news" legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(
-                    navigationMenuTriggerStyle(),
-                    'bg-transparent text-white hover:text-[#FCD34D] hover:bg-[#FCD34D]/10'
-                  )}>
-                    News
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -214,9 +200,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                     </ListItem>
                     <ListItem href="/careers" title="Careers" icon={<Briefcase className="w-4 h-4 text-[#FCD34D]" />}>
                       Join our team
-                    </ListItem>
-                    <ListItem href="/contact" title="Contact" icon={<Phone className="w-4 h-4 text-[#FCD34D]" />}>
-                      Get in touch
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
@@ -292,22 +275,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                     Athletics
                   </Link>
                   <Link
-                    href="/arts"
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-white hover:bg-[#FCD34D]/10 hover:text-[#FCD34D] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Palette className="w-5 h-5" />
-                    Fine Arts
-                  </Link>
-                  <Link
-                    href="/news"
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-white hover:bg-[#FCD34D]/10 hover:text-[#FCD34D] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Newspaper className="w-5 h-5" />
-                    News
-                  </Link>
-                  <Link
                     href="/calendar"
                     className="flex items-center gap-3 px-4 py-3 rounded-lg text-white hover:bg-[#FCD34D]/10 hover:text-[#FCD34D] transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -330,14 +297,6 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                   >
                     <Briefcase className="w-5 h-5" />
                     Careers
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-white hover:bg-[#FCD34D]/10 hover:text-[#FCD34D] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Phone className="w-5 h-5" />
-                    Contact
                   </Link>
                   
                   <div className="border-t border-[#FCD34D]/20 mt-4 pt-4">

@@ -24,6 +24,7 @@ export interface School {
   rating: number;
   principal: Principal;
   heroImage: string;
+  logo?: string;
   mascot: string;
   colors: string[];
   established: number;

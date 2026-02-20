@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
-  GraduationCap,
   MapPin,
   Phone,
   Mail,
@@ -29,16 +29,13 @@ const footerLinks = {
   academics: [
     { label: 'Programs Overview', href: '/academics' },
     { label: 'AP & IB Programs', href: '/academics/ap-ib' },
-    { label: 'STEM Education', href: '/academics/stem' },
-    { label: 'Fine Arts', href: '/arts' },
     { label: 'Career Pathways', href: '/academics/careers' },
   ],
   community: [
-    { label: 'News & Announcements', href: '/news' },
     { label: 'Calendar', href: '/calendar' },
     { label: 'Board of Education', href: '/board' },
     { label: 'Careers', href: '/careers' },
-    { label: 'Contact Us', href: '/contact' },
+    { label: 'About Us', href: '/about' },
   ],
   resources: [
     { label: 'Parent Portal', href: 'https://campus.forsyth.k12.ga.us/campus/portal/forsyth.jsp', external: true },
@@ -70,10 +67,15 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 group mb-6">
               <motion.div
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#FCD34D] to-[#C99600] flex items-center justify-center gold-glow"
+                whileHover={{ scale: 1.05 }}
+                className="relative w-14 h-14 rounded-xl overflow-hidden"
               >
-                <GraduationCap className="w-8 h-8 text-black" />
+                <Image
+                  src="/images/fcs-logo.webp"
+                  alt="Forsyth County Schools"
+                  fill
+                  className="object-cover"
+                />
               </motion.div>
               <div>
                 <h2 className="text-xl font-bold text-white">Forsyth County</h2>

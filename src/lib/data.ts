@@ -63,11 +63,6 @@ export const navigationItems: NavItem[] = [
     description: 'Championship programs',
   },
   {
-    title: 'News',
-    href: '/news',
-    description: 'Latest updates & announcements',
-  },
-  {
     title: 'Calendar',
     href: '/calendar',
     description: 'Events & important dates',
@@ -81,7 +76,6 @@ export const navigationItems: NavItem[] = [
       { title: 'Board of Education', href: '/board', description: 'Meet the board' },
       { title: 'Leadership', href: '/about/leadership', description: 'District leadership team' },
       { title: 'Careers', href: '/careers', description: 'Join our team' },
-      { title: 'Contact', href: '/contact', description: 'Get in touch' },
     ],
   },
 ];
@@ -110,6 +104,7 @@ export const schools: School[] = [
       image: '/images/principals/tracey-winkler.jpg',
     },
     heroImage: '/images/schools/fchs-hero.jpg',
+    logo: 'https://resources.finalsite.net/images/f_auto,q_auto/v1652286683/forsythk12gaus/fchs/logo.png',
     mascot: 'Bulldogs',
     colors: ['#C8102E', '#000000'],
     established: 1956,
@@ -1565,6 +1560,10 @@ export function getFeaturedNews(): NewsArticle[] {
 
 export function getNewsById(id: string): NewsArticle | undefined {
   return newsArticles.find((article) => article.id === id);
+}
+
+export function getNewsBySlug(slug: string): NewsArticle | undefined {
+  return newsArticles.find((article) => article.slug === slug);
 }
 
 export function getUpcomingEvents(limit?: number): CalendarEvent[] {

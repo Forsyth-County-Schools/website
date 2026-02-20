@@ -15,12 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.forsyth.k12.ga.us'),
   title: {
     default: "Forsyth County Schools | Where Tomorrow Begins",
     template: "%s | Forsyth County Schools",
   },
   description: "Forsyth County Schools serves over 54,000 students across 42 world-class schools in Forsyth County, Georgia. Safe. Connected. Thriving.",
-  keywords: ["Forsyth County Schools", "Georgia schools", "education", "public schools", "Cumming GA"],
+  keywords: ["Forsyth County Schools", "Georgia schools", "education", "public schools", "Cumming GA", "FCS", "Forsyth County GA"],
   authors: [{ name: "Forsyth County Schools" }],
   creator: "Forsyth County Schools",
   openGraph: {
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     description: "Serving over 54,000 students across 42 world-class schools in Forsyth County, Georgia.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/fcs-logo.webp",
         width: 1200,
         height: 630,
         alt: "Forsyth County Schools",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Forsyth County Schools | Where Tomorrow Begins",
     description: "Serving over 54,000 students across 42 world-class schools in Forsyth County, Georgia.",
-    images: ["/og-image.jpg"],
+    images: ["/images/fcs-logo.webp"],
     creator: "@ForsythSchools",
   },
   robots: {
@@ -61,6 +62,9 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
+  },
+  verification: {
+    google: "google-site-verification-code",
   },
 };
 
