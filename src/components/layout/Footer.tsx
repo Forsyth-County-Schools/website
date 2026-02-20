@@ -252,9 +252,6 @@ export function Footer() {
             <Link href="/privacy" className="hover:text-[#FCD34D] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/accessibility" className="hover:text-[#FCD34D] transition-colors">
-              Accessibility
-            </Link>
             <Link href="/sitemap" className="hover:text-[#FCD34D] transition-colors">
               Sitemap
             </Link>
