@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()'
           },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://www.ahscampus.com'
+          },
         ],
       },
     ];
@@ -48,7 +52,43 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.forsyth.k12.ga.us',
+        hostname: 'www.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fchs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'sfhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nfhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wfhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'efhs.forsyth.k12.ga.us',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.ahscampus.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ahscampus.com',
       },
     ],
   },

@@ -97,7 +97,6 @@ export default function SchoolDetailClient({ school }: SchoolDetailClientProps) 
                         alt={`${school.name} logo`}
                         fill
                         className="object-contain p-2"
-                        unoptimized
                       />
                     </div>
                   </div>

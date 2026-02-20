@@ -1562,10 +1562,6 @@ export function getNewsById(id: string): NewsArticle | undefined {
   return newsArticles.find((article) => article.id === id);
 }
 
-export function getNewsBySlug(slug: string): NewsArticle | undefined {
-  return newsArticles.find((article) => article.slug === slug);
-}
-
 export function getUpcomingEvents(limit?: number): CalendarEvent[] {
   const now = new Date();
   const upcoming = calendarEvents
