@@ -26,6 +26,7 @@ export interface School {
   heroImage: string;
   logo?: string;
   mascot: string;
+  mascotImage?: string;
   colors: string[];
   established: number;
   latitude: number;
