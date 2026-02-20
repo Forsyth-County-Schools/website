@@ -97,7 +97,7 @@ export function CallToAction() {
 
             {/* Community */}
             <Link
-              href="/contact"
+              href="/about"
               className="group p-6 rounded-2xl premium-card text-center"
             >
               <motion.div
@@ -113,7 +113,7 @@ export function CallToAction() {
                 Partner with us and make a difference in our community
               </p>
               <span className="inline-flex items-center text-sm text-[#FCD34D] font-medium">
-                Contact Us
+                Learn More
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>

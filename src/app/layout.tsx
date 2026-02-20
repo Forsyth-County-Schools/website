@@ -59,12 +59,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  verification: {
-    google: "google-site-verification-code",
+    icon: [
+      { url: "/images/fcs-logo.webp", type: "image/webp" },
+    ],
+    shortcut: "/images/fcs-logo.webp",
+    apple: "/images/fcs-logo.webp",
   },
 };
 

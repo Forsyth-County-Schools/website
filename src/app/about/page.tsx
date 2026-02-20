@@ -2,12 +2,13 @@
 
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, GraduationCap, Users, Heart, Target, Eye } from 'lucide-react';
+import { Mail, Phone, MapPin, Users, Heart, Target, Eye } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CommandPalette } from '@/components/layout/CommandPalette';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { leadershipTeam, boardMembers, districtStats, districtFacts } from '@/lib/data';
 
 const timelineEvents = [
@@ -219,9 +220,12 @@ export default function AboutPage() {
                 >
                   <Card className="h-full bg-[#0A0A0A] border-[#FCD34D]/10 hover:border-[#FCD34D]/30 transition-colors text-center">
                     <CardContent className="p-6">
-                      <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#FCD34D]/20 to-[#C99600]/10 flex items-center justify-center border border-[#FCD34D]/20">
-                        <GraduationCap className="w-10 h-10 text-[#FCD34D]" />
-                      </div>
+                      <Avatar className="w-20 h-20 mx-auto mb-4 border-2 border-[#FCD34D]/20">
+                        <AvatarImage src={leader.image} alt={leader.name} />
+                        <AvatarFallback className="bg-gradient-to-br from-[#FCD34D]/20 to-[#C99600]/10 text-[#FCD34D] text-xl font-bold">
+                          {leader.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                        </AvatarFallback>
+                      </Avatar>
                       <h3 className="text-lg font-bold text-white mb-1">
                         {leader.name}
                       </h3>
