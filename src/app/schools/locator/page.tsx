@@ -11,6 +11,8 @@ import {
   ArrowRight,
   Home,
   CheckCircle,
+  Locate,
+  AlertCircle,
 } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -23,56 +25,169 @@ import { Label } from '@/components/ui/label';
 import { schools } from '@/lib/data';
 import type { School as SchoolType } from '@/types';
 
+// Haversine formula to calculate distance between two coordinates
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 3959; // Earth's radius in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+// Find nearest school of a specific level
+function findNearestSchool(
+  lat: number, 
+  lon: number, 
+  level: 'elementary' | 'middle' | 'high'
+): { school: SchoolType; distance: number } | null {
+  const levelSchools = schools.filter(s => s.level === level);
+  
+  if (levelSchools.length === 0) return null;
+  
+  let nearest = levelSchools[0];
+  let minDistance = calculateDistance(lat, lon, nearest.latitude, nearest.longitude);
+  
+  for (const school of levelSchools) {
+    const distance = calculateDistance(lat, lon, school.latitude, school.longitude);
+    if (distance < minDistance) {
+      minDistance = distance;
+      nearest = school;
+    }
+  }
+  
+  return { school: nearest, distance: minDistance };
+}
+
+// Known zip code coordinates for Forsyth County area
+const zipCodeCoordinates: Record<string, { lat: number; lon: number }> = {
+  '30004': { lat: 34.1251, lon: -84.2549 }, // Alpharetta
+  '30005': { lat: 34.0854, lon: -84.2166 }, // Alpharetta
+  '30009': { lat: 34.0718, lon: -84.2977 }, // Alpharetta
+  '30022': { lat: 34.0254, lon: -84.2282 }, // Alpharetta
+  '30023': { lat: 34.0668, lon: -84.2899 }, // Alpharetta
+  '30040': { lat: 34.2073, lon: -84.1380 }, // Cumming
+  '30041': { lat: 34.1401, lon: -84.1282 }, // Cumming
+  '30028': { lat: 34.2851, lon: -84.1274 }, // Cumming (North)
+  '30097': { lat: 34.0468, lon: -84.0712 }, // Duluth/Johns Creek
+  '30024': { lat: 34.0537, lon: -84.0632 }, // Suwanee
+  '30518': { lat: 34.1029, lon: -84.0237 }, // Buford
+  '30519': { lat: 34.1018, lon: -83.9899 }, // Buford
+};
+
 export default function SchoolLocatorPage() {
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [address, setAddress] = React.useState('');
   const [isSearching, setIsSearching] = React.useState(false);
+  const [isGeolocating, setIsGeolocating] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const [userLocation, setUserLocation] = React.useState<{ lat: number; lon: number } | null>(null);
   const [results, setResults] = React.useState<{
-    elementary: SchoolType | null;
-    middle: SchoolType | null;
-    high: SchoolType | null;
+    elementary: { school: SchoolType; distance: number } | null;
+    middle: { school: SchoolType; distance: number } | null;
+    high: { school: SchoolType; distance: number } | null;
   } | null>(null);
 
+  // Extract zip code from address
+  const extractZipCode = (addr: string): string | null => {
+    const zipMatch = addr.match(/\b(\d{5})(?:-\d{4})?\b/);
+    return zipMatch ? zipMatch[1] : null;
+  };
+
+  // Search by address/zip code
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!address.trim()) return;
 
     setIsSearching(true);
+    setError(null);
     
-    // Simulate search delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate processing delay
+    await new Promise(resolve => setTimeout(resolve, 500));
 
-    // For demo purposes, return sample schools based on address
-    // In production, this would connect to a real zoning API
-    const elementarySchools = schools.filter(s => s.level === 'elementary');
-    const middleSchools = schools.filter(s => s.level === 'middle');
-    const highSchools = schools.filter(s => s.level === 'high');
-
-    // Simple demo: return random schools or based on keywords
-    const addressLower = address.toLowerCase();
+    // Try to extract zip code
+    const zipCode = extractZipCode(address);
     
-    let elementary = elementarySchools[0];
-    let middle = middleSchools[0];
-    let high = highSchools[0];
-
-    // Try to match based on city/area in address
-    if (addressLower.includes('suwanee') || addressLower.includes('johns creek')) {
-      elementary = elementarySchools.find(s => s.city.toLowerCase().includes('suwanee')) || elementarySchools[0];
-      high = highSchools.find(s => s.slug.includes('lambert')) || highSchools[0];
-    } else if (addressLower.includes('alpharetta')) {
-      high = highSchools.find(s => s.slug.includes('south-forsyth')) || highSchools[0];
+    if (zipCode && zipCodeCoordinates[zipCode]) {
+      const coords = zipCodeCoordinates[zipCode];
+      setUserLocation(coords);
+      findNearestSchools(coords.lat, coords.lon);
+    } else {
+      // Try to find a matching city/area
+      const addressLower = address.toLowerCase();
+      let coords: { lat: number; lon: number } | null = null;
+      
+      if (addressLower.includes('cumming')) {
+        coords = zipCodeCoordinates['30040'];
+      } else if (addressLower.includes('alpharetta')) {
+        coords = zipCodeCoordinates['30004'];
+      } else if (addressLower.includes('suwanee')) {
+        coords = zipCodeCoordinates['30024'];
+      } else if (addressLower.includes('johns creek')) {
+        coords = zipCodeCoordinates['30097'];
+      } else if (addressLower.includes('buford')) {
+        coords = zipCodeCoordinates['30518'];
+      }
+      
+      if (coords) {
+        setUserLocation(coords);
+        findNearestSchools(coords.lat, coords.lon);
+      } else {
+        setError('Could not locate address. Please try using your current location or enter a valid Forsyth County zip code (30040, 30041, 30028, etc.)');
+        setResults(null);
+      }
     }
-
-    setResults({
-      elementary,
-      middle,
-      high,
-    });
     
     setIsSearching(false);
   };
 
-  const SchoolResultCard = ({ school, level }: { school: SchoolType; level: string }) => (
+  // Use browser geolocation
+  const handleUseCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      setError('Geolocation is not supported by your browser');
+      return;
+    }
+
+    setIsGeolocating(true);
+    setError(null);
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setUserLocation({ lat: latitude, lon: longitude });
+        setAddress(`Current Location (${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+        findNearestSchools(latitude, longitude);
+        setIsGeolocating(false);
+      },
+      (err) => {
+        setError('Unable to retrieve your location. Please enter your address manually.');
+        setIsGeolocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
+
+  // Find nearest schools for all levels
+  const findNearestSchools = (lat: number, lon: number) => {
+    const elementary = findNearestSchool(lat, lon, 'elementary');
+    const middle = findNearestSchool(lat, lon, 'middle');
+    const high = findNearestSchool(lat, lon, 'high');
+
+    setResults({ elementary, middle, high });
+  };
+
+  const SchoolResultCard = ({ 
+    school, 
+    level, 
+    distance 
+  }: { 
+    school: SchoolType; 
+    level: string; 
+    distance: number;
+  }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -84,11 +199,15 @@ export default function SchoolLocatorPage() {
             <Badge className="bg-gradient-to-r from-[#FCD34D] to-[#C99600] text-black capitalize">
               {level} School
             </Badge>
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">{distance.toFixed(1)} mi</span>
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
           </div>
         </CardHeader>
         <CardContent>
           <h3 className="text-xl font-bold text-white mb-2">{school.name}</h3>
+          <p className="text-sm text-[#FCD34D] mb-2">{school.mascot}</p>
           <div className="flex items-start gap-2 text-muted-foreground text-sm mb-4">
             <MapPin className="w-4 h-4 mt-0.5 text-[#FCD34D] shrink-0" />
             <span>{school.address}, {school.city}, {school.state} {school.zip}</span>
@@ -151,28 +270,58 @@ export default function SchoolLocatorPage() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Home className="w-5 h-5 text-[#FCD34D]" />
-                    Enter Your Address
+                    Find Your Nearest Schools
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-6">
+                  {/* Use Current Location Button */}
+                  <Button
+                    type="button"
+                    onClick={handleUseCurrentLocation}
+                    disabled={isGeolocating}
+                    variant="outline"
+                    className="w-full border-[#FCD34D]/30 text-[#FCD34D] hover:bg-[#FCD34D]/10 h-12"
+                  >
+                    {isGeolocating ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-[#FCD34D]/30 border-t-[#FCD34D] rounded-full animate-spin mr-2" />
+                        Getting Location...
+                      </>
+                    ) : (
+                      <>
+                        <Locate className="w-5 h-5 mr-2" />
+                        Use My Current Location
+                      </>
+                    )}
+                  </Button>
+
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-[#FCD34D]/10" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-[#0A0A0A] px-2 text-muted-foreground">or enter address</span>
+                    </div>
+                  </div>
+
                   <form onSubmit={handleSearch} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="address" className="text-white">
-                        Home Address
+                        Home Address or Zip Code
                       </Label>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                         <Input
                           id="address"
                           type="text"
-                          placeholder="123 Main Street, Cumming, GA 30040"
+                          placeholder="Enter zip code (30040) or address"
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
                           className="pl-10 bg-[#050505] border-[#FCD34D]/20 focus:border-[#FCD34D] h-12"
                         />
                       </div>
                       <p className="text-xs text-muted-foreground">
-                        Enter your full street address including city and zip code
+                        Supported zip codes: 30040, 30041, 30028, 30004, 30005, 30024, 30097, 30518
                       </p>
                     </div>
                     <Button
@@ -188,11 +337,23 @@ export default function SchoolLocatorPage() {
                       ) : (
                         <>
                           <Search className="w-5 h-5 mr-2" />
-                          Find My Schools
+                          Find Nearest Schools
                         </>
                       )}
                     </Button>
                   </form>
+
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-start gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/20"
+                    >
+                      <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                      <p className="text-sm text-red-400">{error}</p>
+                    </motion.div>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -210,22 +371,34 @@ export default function SchoolLocatorPage() {
                 className="text-center mb-8"
               >
                 <h2 className="text-2xl font-bold text-white mb-2">
-                  Your Zoned Schools
+                  Your Nearest Schools
                 </h2>
                 <p className="text-muted-foreground">
-                  Based on the address: <span className="text-[#FCD34D]">{address}</span>
+                  Based on your location: <span className="text-[#FCD34D]">{address}</span>
                 </p>
               </motion.div>
 
               <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 {results.elementary && (
-                  <SchoolResultCard school={results.elementary} level="Elementary" />
+                  <SchoolResultCard 
+                    school={results.elementary.school} 
+                    level="Elementary" 
+                    distance={results.elementary.distance}
+                  />
                 )}
                 {results.middle && (
-                  <SchoolResultCard school={results.middle} level="Middle" />
+                  <SchoolResultCard 
+                    school={results.middle.school} 
+                    level="Middle" 
+                    distance={results.middle.distance}
+                  />
                 )}
                 {results.high && (
-                  <SchoolResultCard school={results.high} level="High" />
+                  <SchoolResultCard 
+                    school={results.high.school} 
+                    level="High" 
+                    distance={results.high.distance}
+                  />
                 )}
               </div>
 
@@ -236,8 +409,8 @@ export default function SchoolLocatorPage() {
                 className="text-center mt-8"
               >
                 <p className="text-sm text-muted-foreground mb-4">
-                  Note: School zones are subject to change. Please contact the district 
-                  for official zoning verification.
+                  Note: Distances are approximate. School zones are subject to change. 
+                  Please contact the district for official zoning verification.
                 </p>
                 <Button
                   variant="outline"
