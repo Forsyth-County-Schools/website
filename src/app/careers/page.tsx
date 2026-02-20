@@ -104,7 +104,7 @@ export default function CareersPage() {
                 className="bg-gradient-to-r from-[#FCD34D] to-[#C99600] text-black font-semibold hover:opacity-90"
               >
                 <a
-                  href="https://forsythcountyschools.tedk12.com/hire/index.aspx"
+                  href="https://www.applitrack.com/forsyth/onlineapp/default.aspx?all=1"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -252,7 +252,7 @@ export default function CareersPage() {
                             className="bg-gradient-to-r from-[#FCD34D] to-[#C99600] text-black hover:opacity-90"
                           >
                             <a
-                              href="https://forsythcountyschools.tedk12.com/hire/index.aspx"
+                              href="https://www.applitrack.com/forsyth/onlineapp/default.aspx?all=1"
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -282,7 +282,7 @@ export default function CareersPage() {
                 className="border-[#FCD34D]/30 text-[#FCD34D] hover:bg-[#FCD34D]/10 hover:border-[#FCD34D]"
               >
                 <a
-                  href="https://forsythcountyschools.tedk12.com/hire/index.aspx"
+                  href="https://www.applitrack.com/forsyth/onlineapp/default.aspx?all=1"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -313,7 +313,7 @@ export default function CareersPage() {
                     className="bg-gradient-to-r from-[#FCD34D] to-[#C99600] text-black font-semibold hover:opacity-90"
                   >
                     <a
-                      href="https://forsythcountyschools.tedk12.com/hire/index.aspx"
+                      href="https://www.applitrack.com/forsyth/onlineapp/default.aspx?all=1"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

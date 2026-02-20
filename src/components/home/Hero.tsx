@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { districtStats, districtFacts } from '@/lib/data';
+import { districtStats } from '@/lib/data';
 
 // Floating particles component
 function FloatingParticles() {
@@ -155,10 +155,10 @@ export function Hero() {
               variant="outline"
               className="group px-8 py-6 text-lg border-[#FCD34D]/30 text-white hover:bg-[#FCD34D]/10 hover:border-[#FCD34D] transition-all"
             >
-              <Link href="/about">
+              <a href="https://www.youtube.com/watch?v=yySJhjy_Q-0" target="_blank" rel="noopener noreferrer">
                 <Play className="mr-2 w-5 h-5" />
                 Watch Our Story
-              </Link>
+              </a>
             </Button>
           </motion.div>
 
@@ -167,7 +167,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="relative inline-flex items-center justify-center mb-16"
+            className="relative inline-flex items-center justify-center"
           >
             <Link
               href="/schools/locator"
@@ -188,57 +188,7 @@ export function Hero() {
               <ArrowRight className="w-4 h-4 text-[#FCD34D] group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
-
-          {/* Quick Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
-          >
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-[#FCD34D] mb-1">
-                {districtStats.graduationRate}%
-              </div>
-              <div className="text-sm text-muted-foreground">Graduation Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-[#FCD34D] mb-1">
-                {districtFacts.countries}
-              </div>
-              <div className="text-sm text-muted-foreground">Countries Represented</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-[#FCD34D] mb-1">
-                {districtStats.totalSchools}
-              </div>
-              <div className="text-sm text-muted-foreground">Schools</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-[#FCD34D] mb-1">
-                {districtFacts.languages}
-              </div>
-              <div className="text-sm text-muted-foreground">Languages Supported</div>
-            </div>
-          </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
-          >
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <ChevronDown className="w-5 h-5 text-[#FCD34D]" />
-          </motion.div>
-        </motion.div>
       </motion.div>
     </section>
   );

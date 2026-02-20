@@ -4,14 +4,11 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import {
   School,
-  Newspaper,
   Calendar,
   Users,
   GraduationCap,
   Trophy,
-  Palette,
   Briefcase,
-  Phone,
   Search,
   Home,
   FileText,
@@ -37,13 +34,10 @@ const quickLinks = [
   { title: 'Schools', href: '/schools', icon: School },
   { title: 'Academics', href: '/academics', icon: GraduationCap },
   { title: 'Athletics', href: '/athletics', icon: Trophy },
-  { title: 'Fine Arts', href: '/arts', icon: Palette },
-  { title: 'News', href: '/news', icon: Newspaper },
   { title: 'Calendar', href: '/calendar', icon: Calendar },
   { title: 'About', href: '/about', icon: Users },
   { title: 'Board of Education', href: '/board', icon: Users },
   { title: 'Careers', href: '/careers', icon: Briefcase },
-  { title: 'Contact', href: '/contact', icon: Phone },
 ];
 
 const resources = [

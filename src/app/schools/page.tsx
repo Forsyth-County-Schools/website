@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Search,
@@ -10,9 +11,6 @@ import {
   Star,
   ArrowRight,
   Users,
-  Filter,
-  Grid3X3,
-  List,
 } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -21,7 +19,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { schools } from '@/lib/data';
 import type { School } from '@/types';
 
@@ -29,6 +27,47 @@ const levelColors = {
   elementary: 'from-green-500 to-emerald-600',
   middle: 'from-blue-500 to-indigo-600',
   high: 'from-[#FCD34D] to-[#C99600]',
+};
+
+// Mascot emoji mapping
+const mascotEmojis: Record<string, string> = {
+  'Bulldogs': '🐶',
+  'War Eagles': '🦅',
+  'Raiders': '⚔️',
+  'Wolverines': '🦡',
+  'Longhorns': '🐂',
+  'Danes': '🐕',
+  'Broncos': '🐴',
+  'Lancers': '🏇',
+  'Lions': '🦁',
+  'Wolves': '🐺',
+  'Warriors': '⚔️',
+  'Panthers': '🐆',
+  'Eagles': '🦅',
+  'Bears': '🐻',
+  'Tigers': '🐯',
+  'Hawks': '🦅',
+  'Wildcats': '🐱',
+  'Cougars': '🐆',
+  'Mustangs': '🐎',
+  'Falcons': '🦅',
+  'Knights': '🛡️',
+  'Jaguars': '🐆',
+  'Cardinals': '🐦',
+  'Hornets': '🐝',
+  'Pioneers': '🏔️',
+  'Rockets': '🚀',
+  'Stars': '⭐',
+  'Stallions': '🐎',
+  'Owls': '🦉',
+  'Sharks': '🦈',
+  'Dragons': '🐉',
+  'Rebels': '⚔️',
+  'default': '🏫',
+};
+
+const getMascotEmoji = (mascot: string): string => {
+  return mascotEmojis[mascot] || mascotEmojis['default'];
 };
 
 function SchoolCard({ school, index }: { school: School; index: number }) {
@@ -40,9 +79,28 @@ function SchoolCard({ school, index }: { school: School; index: number }) {
     >
       <Link href={`/schools/${school.slug}`} className="group block h-full">
         <Card className="h-full overflow-hidden bg-[#0A0A0A] border-[#FCD34D]/10 hover:border-[#FCD34D]/30 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-[#FCD34D]/10 group-hover:-translate-y-1">
-          {/* Header with gradient */}
+          {/* Header with gradient and mascot */}
           <div className="relative h-32 bg-gradient-to-br from-[#0A1428] to-[#050505] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+            
+            {/* Mascot Image or Emoji - Large centered */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {school.mascotImage ? (
+                <div className="relative w-16 h-16 opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-300">
+                  <Image
+                    src={school.mascotImage}
+                    alt={school.mascot}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              ) : (
+                <span className="text-5xl opacity-30 group-hover:opacity-50 group-hover:scale-110 transition-all duration-300">
+                  {getMascotEmoji(school.mascot)}
+                </span>
+              )}
+            </div>
             
             {/* Level Badge */}
             <Badge
@@ -57,9 +115,22 @@ function SchoolCard({ school, index }: { school: School; index: number }) {
               <span className="text-xs text-white font-medium">{school.rating}</span>
             </div>
 
-            {/* Mascot indicator */}
-            <div className="absolute bottom-3 left-3 text-white/60 text-xs">
-              {school.mascot}
+            {/* Mascot name */}
+            <div className="absolute bottom-3 left-3 flex items-center gap-2">
+              {school.mascotImage ? (
+                <div className="relative w-5 h-5">
+                  <Image
+                    src={school.mascotImage}
+                    alt={school.mascot}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              ) : (
+                <span className="text-lg">{getMascotEmoji(school.mascot)}</span>
+              )}
+              <span className="text-white/80 text-xs font-medium">{school.mascot}</span>
             </div>
           </div>
 
