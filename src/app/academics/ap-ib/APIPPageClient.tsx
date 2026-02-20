@@ -151,6 +151,7 @@ export default function APIPPageClient() {
                           </ul>
                         </div>
                         <div className="pt-4">
+                          {/* District-wide AP pass rate - source: FCS Annual Report */}
                           <p className="text-[#FCD34D] font-semibold text-2xl">78%</p>
                           <p className="text-sm text-muted-foreground">AP Exam Pass Rate (Score 3+)</p>
                         </div>
