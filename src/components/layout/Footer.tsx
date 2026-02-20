@@ -51,7 +51,7 @@ const footerLinks = {
 
 const socialLinks = [
   { label: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/ForsythCountySchools' },
-  { label: 'Twitter', icon: Twitter, href: 'https://twitter.com/ForssythSchools' },
+  { label: 'Twitter', icon: Twitter, href: 'https://twitter.com/ForsythSchools' },
   { label: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/user/ForsythCountySchools' },
   { label: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/forsythcountyschools' },
   { label: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/forsyth-county-schools' },
