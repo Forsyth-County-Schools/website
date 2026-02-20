@@ -93,6 +93,7 @@ export interface Job {
   id: string;
   title: string;
   department: string;
+  category: string;
   location: string;
   type: 'full-time' | 'part-time' | 'contract';
   salary: string;
@@ -101,6 +102,7 @@ export interface Job {
   description: string;
   requirements: string[];
   benefits: string[];
+  featured?: boolean;
 }
 
 // Testimonial Types
