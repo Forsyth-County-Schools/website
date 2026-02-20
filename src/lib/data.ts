@@ -93,7 +93,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 887-8151',
-    website: 'https://fchs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/central',
     enrollment: 2450,
     rating: 4.5,
     principal: {
@@ -124,7 +124,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 781-2264',
-    website: 'https://sfhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/south',
     enrollment: 3100,
     rating: 4.7,
     principal: {
@@ -155,7 +155,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(770) 781-6637',
-    website: 'https://nfhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/northforsyth',
     enrollment: 2200,
     rating: 4.4,
     principal: {
@@ -186,7 +186,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 888-3470',
-    website: 'https://wfhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/west',
     enrollment: 2800,
     rating: 4.6,
     principal: {
@@ -217,7 +217,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30024',
     phone: '(678) 965-5050',
-    website: 'https://lhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/lambert',
     enrollment: 2900,
     rating: 4.8,
     principal: {
@@ -248,7 +248,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(470) 254-4320',
-    website: 'https://dhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/denmark',
     enrollment: 2100,
     rating: 4.5,
     principal: {
@@ -277,7 +277,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(470) 254-5100',
-    website: 'https://efhs.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/eastforsyth',
     enrollment: 1800,
     rating: 4.4,
     principal: {
@@ -308,7 +308,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 455-7311',
-    website: 'https://lkms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/lakeside',
     enrollment: 1400,
     rating: 4.5,
     principal: {
@@ -337,7 +337,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(770) 781-4889',
-    website: 'https://lbms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/liberty',
     enrollment: 1350,
     rating: 4.5,
     principal: {
@@ -366,7 +366,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 965-5000',
-    website: 'https://lmms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/littlemill',
     enrollment: 1300,
     rating: 4.6,
     principal: {
@@ -395,7 +395,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(770) 889-0743',
-    website: 'https://nfms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/northforsythms',
     enrollment: 1200,
     rating: 4.4,
     principal: {
@@ -424,7 +424,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 887-5248',
-    website: 'https://oms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/otwell',
     enrollment: 1250,
     rating: 4.5,
     principal: {
@@ -453,7 +453,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 965-5010',
-    website: 'https://pgms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/pineygrove',
     enrollment: 1400,
     rating: 4.5,
     principal: {
@@ -482,7 +482,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30024',
     phone: '(678) 455-7311',
-    website: 'https://rwms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/riverwatch',
     enrollment: 1350,
     rating: 4.6,
     principal: {
@@ -511,7 +511,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 888-3170',
-    website: 'https://sfms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/southforsythms',
     enrollment: 1500,
     rating: 4.6,
     principal: {
@@ -540,7 +540,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 667-2580',
-    website: 'https://vcms.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/vickeryms',
     enrollment: 1250,
     rating: 4.5,
     principal: {
@@ -571,7 +571,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 887-4584',
-    website: 'https://bces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/bigcreek',
     enrollment: 850,
     rating: 4.6,
     principal: {
@@ -600,7 +600,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 965-5060',
-    website: 'https://bwes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/brookwood',
     enrollment: 780,
     rating: 4.5,
     principal: {
@@ -629,7 +629,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 781-2240',
-    website: 'https://ces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/chattahoochee',
     enrollment: 720,
     rating: 4.4,
     principal: {
@@ -658,7 +658,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30506',
     phone: '(770) 887-2341',
-    website: 'https://chses.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/chestatee',
     enrollment: 650,
     rating: 4.3,
     principal: {
@@ -687,7 +687,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(770) 887-7705',
-    website: 'https://cmes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/coalmountain',
     enrollment: 720,
     rating: 4.4,
     principal: {
@@ -716,7 +716,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 887-7749',
-    website: 'https://cues.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/cumming',
     enrollment: 650,
     rating: 4.3,
     principal: {
@@ -745,7 +745,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 888-1222',
-    website: 'https://dces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/davescreek',
     enrollment: 890,
     rating: 4.6,
     principal: {
@@ -774,7 +774,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(678) 965-5090',
-    website: 'https://gwes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/brandywine',
     enrollment: 920,
     rating: 4.6,
     principal: {
@@ -803,7 +803,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 965-5070',
-    website: 'https://hces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/hawcreek',
     enrollment: 920,
     rating: 4.7,
     principal: {
@@ -832,7 +832,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30024',
     phone: '(678) 965-5041',
-    website: 'https://jces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/johnscreek',
     enrollment: 850,
     rating: 4.5,
     principal: {
@@ -861,7 +861,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(770) 889-1630',
-    website: 'https://mbes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/mashburn',
     enrollment: 780,
     rating: 4.5,
     principal: {
@@ -890,7 +890,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(678) 455-4500',
-    website: 'https://mtes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/matt',
     enrollment: 850,
     rating: 4.5,
     principal: {
@@ -919,7 +919,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30004',
     phone: '(770) 475-6670',
-    website: 'https://mwes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/midway',
     enrollment: 920,
     rating: 4.6,
     principal: {
@@ -948,7 +948,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 887-6161',
-    website: 'https://swes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/sawnee',
     enrollment: 890,
     rating: 4.5,
     principal: {
@@ -977,7 +977,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30024',
     phone: '(770) 887-1883',
-    website: 'https://sbes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/settlesbridge',
     enrollment: 950,
     rating: 4.7,
     principal: {
@@ -1006,7 +1006,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30024',
     phone: '(770) 888-7511',
-    website: 'https://shes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/sharon',
     enrollment: 780,
     rating: 4.4,
     principal: {
@@ -1035,7 +1035,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30041',
     phone: '(678) 341-6481',
-    website: 'https://spes.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/shilohpoint',
     enrollment: 860,
     rating: 4.5,
     principal: {
@@ -1064,7 +1064,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30028',
     phone: '(678) 965-5020',
-    website: 'https://sces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/silvercity',
     enrollment: 720,
     rating: 4.4,
     principal: {
@@ -1093,7 +1093,7 @@ export const schools: School[] = [
     state: 'GA',
     zip: '30040',
     phone: '(770) 346-0040',
-    website: 'https://vces.forsyth.k12.ga.us',
+    website: 'https://www.forsyth.k12.ga.us/vickery',
     enrollment: 850,
     rating: 4.5,
     principal: {
