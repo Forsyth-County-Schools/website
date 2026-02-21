@@ -5,21 +5,21 @@ struct StatCardView: View {
     let value: String
     let label: String
     var body: some View {
-        VStack(spacing: 6) {
-            Image(systemName: icon)
-                .font(.system(size: 22))
-                .foregroundColor(AppColors.gold)
-            Text(value)
-                .font(.system(size: 20, weight: .heavy))
-                .foregroundColor(.white)
-            Text(label)
-                .font(AppFonts.caption())
-                .foregroundColor(.white.opacity(0.8))
-                .multilineTextAlignment(.center)
+        GlassCard(.subtle) {
+            VStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 22))
+                    .foregroundColor(DesignTokens.Colors.gold)
+                Text(value)
+                    .font(.system(size: 20, weight: .heavy))
+                    .foregroundColor(DesignTokens.Colors.textPrimary)
+                Text(label)
+                    .font(DesignTokens.Typography.caption())
+                    .foregroundColor(DesignTokens.Colors.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(14)
         }
-        .frame(maxWidth: .infinity)
-        .padding(14)
-        .background(Color.white.opacity(0.12))
-        .cornerRadius(12)
     }
 }

@@ -1,33 +1,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: FCSTab = .home
+
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
+        ZStack {
+            AnimatedGradientBackground()
+
+            Group {
+                switch selectedTab {
+                case .home:      HomeView()
+                case .news:      NewsView()
+                case .schools:   SchoolsView()
+                case .calendar:  CalendarView()
+                case .athletics: AthleticsView()
+                case .more:      MoreView()
                 }
-            NewsView()
-                .tabItem {
-                    Label("News", systemImage: "newspaper.fill")
-                }
-            SchoolsView()
-                .tabItem {
-                    Label("Schools", systemImage: "building.2.fill")
-                }
-            CalendarView()
-                .tabItem {
-                    Label("Calendar", systemImage: "calendar")
-                }
-            AthleticsView()
-                .tabItem {
-                    Label("Athletics", systemImage: "trophy.fill")
-                }
-            MoreView()
-                .tabItem {
-                    Label("More", systemImage: "ellipsis.circle.fill")
-                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .accentColor(AppColors.primary)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            FCSTabBar(selected: $selectedTab)
+        }
+        .preferredColorScheme(.dark)
     }
 }
