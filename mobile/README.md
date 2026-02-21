@@ -1,143 +1,76 @@
-# FCS Schools Mobile App
+# FCS Schools — iOS App (Swift + SwiftUI)
 
-A React Native + Expo mobile application for **Forsyth County Schools (FCS)** — Georgia's premier school district serving 54,000+ students across 42 schools.
-
----
-
-## Overview
-
-The FCS Schools mobile app provides parents, students, and community members with quick access to:
-
-- 📰 **News & Updates** — Latest district news with search and category filters
-- 🏫 **Schools Directory** — All 42 FCS schools with details, filtering, and search
-- 📅 **School Calendar** — Monthly calendar with color-coded events
-- 🏆 **Athletics** — Sports listings by season and upcoming game schedules
-- ⚙️ **More** — Settings, notifications, contact info, and social media links
+A native **iOS app** for **Forsyth County Schools** built with Swift and SwiftUI.  
+It mirrors and extends the functionality of [ahscampus.com](https://ahscampus.com) with a polished, native iOS UX.
 
 ---
 
-## Tech Stack
+## Requirements
 
-| Technology | Version | Purpose |
-|---|---|---|
-| **Expo** | ~52.0.0 | Build toolchain & managed workflow |
-| **React Native** | 0.76.0 | Cross-platform mobile framework |
-| **Expo Router** | ~4.0.0 | File-based navigation (tabs + stack) |
-| **React Native Reanimated** | ~3.16.0 | Smooth animations & transitions |
-| **Moti** | ^0.30.0 | Animation utilities |
-| **NativeWind** | ^4.0.1 | Tailwind CSS styling for React Native |
-| **react-native-calendars** | ^1.1310.0 | Calendar component |
-| **Zustand** | ^5.0.0 | State management |
-| **@expo/vector-icons** | ^14.0.0 | Ionicons & other icon sets |
-| **react-native-safe-area-context** | 4.12.0 | Safe area insets |
-| **react-native-gesture-handler** | ~2.20.0 | Gesture handling |
-| **TypeScript** | ^5.3.0 | Type safety |
+| Tool | Version |
+|------|---------|
+| Xcode | 15.0 or later |
+| iOS Deployment Target | 17.0+ |
+| Swift | 5.9+ |
+| macOS (build machine) | Sonoma 14+ |
+
+No external Swift Package dependencies — the app uses only Apple system frameworks:
+`SwiftUI`, `MapKit`, `Foundation`
 
 ---
 
-## Prerequisites
+## Getting Started
 
-Before you begin, make sure you have the following installed:
+### 1. Open in Xcode
 
-- **Node.js** v18+ — [nodejs.org](https://nodejs.org)
-- **npm** or **yarn**
-- **Expo CLI** — Install globally:
-  ```bash
-  npm install -g expo-cli
-  ```
-- **EAS CLI** (for production builds) — Install globally:
-  ```bash
-  npm install -g eas-cli
-  ```
+```bash
+cd mobile/
+open FCSSchools.xcodeproj
+```
 
-### For iOS Development
-- **macOS** is required
-- **Xcode** 15+ — [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835)
-- **Xcode Command Line Tools**:
-  ```bash
-  xcode-select --install
-  ```
-- **iOS Simulator** (included with Xcode)
+Xcode will open the project. Select a Simulator or connected device and press **⌘R** to run.
 
-### For Android Development
-- **Android Studio** — [developer.android.com/studio](https://developer.android.com/studio)
-- **Android SDK** (API Level 33+)
-- **Android Virtual Device (AVD)** set up via Android Studio
-- Ensure `ANDROID_HOME` environment variable is set
+### 2. Run on iOS Simulator
+
+1. Open `FCSSchools.xcodeproj` in Xcode
+2. In the toolbar, choose a simulator (e.g. **iPhone 16 Pro**)
+3. Press **⌘R** (Product → Run)
+
+### 3. Run on a Physical Device
+
+1. Connect your iPhone via USB
+2. In Xcode go to **Signing & Capabilities** → set your **Team**
+3. Select your device in the toolbar and press **⌘R**
 
 ---
 
-## Setup Instructions
+## Build for Production (App Store)
 
-### 1. Navigate to the mobile directory
+### Archive & Upload
 
-```bash
-cd /path/to/website/mobile
-```
+1. In Xcode choose **Product → Archive**
+2. Once complete, Xcode Organizer opens automatically
+3. Click **Distribute App** → **App Store Connect**
+4. Follow the submission wizard
 
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Start the development server
+### Command-line archive
 
 ```bash
-npx expo start
+xcodebuild archive \
+  -project FCSSchools.xcodeproj \
+  -scheme FCSSchools \
+  -configuration Release \
+  -archivePath ./build/FCSSchools.xcarchive
 ```
 
-This opens the **Expo Developer Tools** in your browser and shows a QR code.
-
----
-
-## Running the App
-
-### On a Physical Device (Easiest)
-
-1. Install **Expo Go** on your phone:
-   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
-   - [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
-2. Run `npx expo start`
-3. Scan the QR code with:
-   - **iOS**: Camera app
-   - **Android**: Expo Go app
-
-### On iOS Simulator
+### Export IPA
 
 ```bash
-npx expo start --ios
+xcodebuild -exportArchive \
+  -archivePath ./build/FCSSchools.xcarchive \
+  -exportOptionsPlist ExportOptions.plist \
+  -exportPath ./build/
 ```
-
-Or after starting:
-
-```bash
-npx expo run:ios
-```
-
-> **Note**: Requires macOS with Xcode installed.
-
-### On Android Emulator
-
-```bash
-npx expo start --android
-```
-
-Or after starting:
-
-```bash
-npx expo run:android
-```
-
-> **Note**: Requires Android Studio with an AVD configured and running.
-
-### Using Expo Go (QR Code)
-
-```bash
-npx expo start
-```
-
-Scan the QR code with your device's camera (iOS) or the Expo Go app (Android).
 
 ---
 
@@ -145,144 +78,70 @@ Scan the QR code with your device's camera (iOS) or the Expo Go app (Android).
 
 ```
 mobile/
-├── app/                          # Expo Router app directory
-│   ├── _layout.tsx               # Root layout (SafeAreaProvider, GestureHandler)
-│   ├── +not-found.tsx            # 404 screen
-│   └── (tabs)/                   # Tab navigator group
-│       ├── _layout.tsx           # Tab bar configuration
-│       ├── index.tsx             # Home screen
-│       ├── news.tsx              # News & Updates screen
-│       ├── schools.tsx           # Schools directory screen
-│       ├── calendar.tsx          # School calendar screen
-│       ├── athletics.tsx         # Athletics screen
-│       └── more.tsx              # Settings & More screen
-├── components/                   # Reusable UI components
-│   ├── Header.tsx                # Top navigation header
-│   ├── HeroSection.tsx           # Hero banner component
-│   ├── NewsCard.tsx              # News article card
-│   └── SchoolCard.tsx            # School listing card
-├── constants/
-│   └── theme.ts                  # Colors, fonts, spacing constants
-├── lib/
-│   ├── data.ts                   # All FCS data (schools, news, events, etc.)
-│   └── utils.ts                  # Utility functions
-├── types/
-│   └── index.ts                  # TypeScript type definitions
-├── assets/
-│   └── images/                   # App icons and splash screen images
-├── app.json                      # Expo app configuration
-├── babel.config.js               # Babel configuration
-├── eas.json                      # EAS Build configuration
-├── package.json                  # Dependencies
-├── tailwind.config.js            # Tailwind/NativeWind configuration
-└── tsconfig.json                 # TypeScript configuration
+├── FCSSchools.xcodeproj/              # Xcode project
+│   ├── project.pbxproj                # Project configuration
+│   └── xcshareddata/xcschemes/        # Build scheme
+│       └── FCSSchools.xcscheme
+└── FCSSchools/                        # Swift source root
+    ├── App.swift                      # @main entry point
+    ├── ContentView.swift              # Root TabView (6 tabs)
+    ├── Info.plist                     # App metadata & permissions
+    ├── Assets.xcassets/               # App icon, accent color
+    ├── Models/
+    │   ├── Theme.swift                # AppColors, AppFonts constants
+    │   ├── School.swift               # School, Principal structs
+    │   ├── News.swift                 # NewsArticle struct
+    │   ├── CalendarEvent.swift        # CalendarEvent struct + Color(hex:)
+    │   └── Athletics.swift            # Sport, Game, DistrictStats structs
+    ├── Data/
+    │   ├── SchoolData.swift           # All 42 real FCS schools
+    │   ├── NewsData.swift             # 10 sample news articles
+    │   ├── EventData.swift            # 10 calendar events
+    │   └── AthleticsData.swift        # 16 sports + 6 sample games
+    ├── Components/
+    │   ├── SchoolCardView.swift       # Reusable school card
+    │   ├── NewsCardView.swift         # Reusable news article card
+    │   └── StatCardView.swift         # District stat tile
+    └── Views/
+        ├── Home/HomeView.swift        # Hero + stats + quick links + news preview
+        ├── News/
+        │   ├── NewsView.swift         # Searchable + filterable news feed
+        │   └── NewsDetailView.swift   # Full article detail
+        ├── Schools/
+        │   ├── SchoolsView.swift      # All 42 schools, search + level filter
+        │   └── SchoolDetailView.swift # School info, MapKit map, directions
+        ├── Calendar/CalendarView.swift # Monthly calendar + event list
+        ├── Athletics/AthleticsView.swift # Sports by season + game scores
+        └── More/MoreView.swift        # Settings, contacts, links, about
 ```
 
 ---
 
-## Building for Production
+## Features
 
-### Prerequisites for Production Builds
-
-1. Create an Expo account at [expo.dev](https://expo.dev)
-2. Log in via CLI:
-   ```bash
-   eas login
-   ```
-3. Configure your project:
-   ```bash
-   eas build:configure
-   ```
-
-### Build for iOS
-
-```bash
-eas build --platform ios
-```
-
-For a local iOS simulator build:
-```bash
-eas build --platform ios --profile development
-```
-
-### Build for Android
-
-```bash
-eas build --platform android
-```
-
-### Build for Both Platforms
-
-```bash
-eas build --platform all
-```
-
-### Submit to App Stores
-
-After a successful production build:
-
-```bash
-# Submit to Apple App Store
-eas submit --platform ios
-
-# Submit to Google Play Store
-eas submit --platform android
-```
+| Screen | Features |
+|--------|----------|
+| **Home** | Hero banner, district stats grid, quick-access links, latest news preview |
+| **News** | Searchable/filterable news feed, featured articles, detail view |
+| **Schools** | All 42 FCS schools, filter by level, search, school detail with MapKit |
+| **Calendar** | Native month calendar grid, event dots, upcoming event list |
+| **Athletics** | 16 sports by season, game scores/schedule |
+| **More** | Notification toggles, contact info, deep links, social media, about |
 
 ---
 
-## Environment & Configuration
+## Design
 
-### App Configuration (`app.json`)
-
-Key settings:
-- **Bundle ID (iOS)**: `com.forsythcountyschools.app`
-- **Package (Android)**: `com.forsythcountyschools.app`
-- **Scheme**: `fcsschools` (for deep links)
-- **Primary color**: `#003087` (FCS Navy Blue)
-
-### Theme Colors
-
-| Name | Hex | Usage |
-|---|---|---|
-| Primary (Navy) | `#003087` | Headers, buttons, links |
-| Gold | `#FCD34D` | Accents, highlights |
-| Gold Dark | `#C99600` | Gold text on light backgrounds |
+- **Brand colors:** Navy `#003087` (primary) + Gold `#FCD34D`
+- **Dark Mode:** Fully supported via SwiftUI `colorScheme` and semantic colors
+- **Typography:** SF Pro (system font — automatic on iOS)
+- **Accessibility:** `accessibilityLabel`, dynamic type, semantic colors
+- **Maps:** Native `MapKit` — tap "Get Directions" to open Apple Maps
 
 ---
 
-## Adding App Icons & Splash Screen
+## Bundle Identifier
 
-Place your icon files in `assets/images/`:
-- `icon.png` — 1024×1024 px (iOS)
-- `splash.png` — 1284×2778 px (recommended)
-- `adaptive-icon.png` — 1024×1024 px (Android adaptive icon foreground)
+`com.forsythcountyschools.app`
 
-Then run:
-```bash
-npx expo prebuild
-```
-
----
-
-## Development Tips
-
-- **Hot Reload**: Shake your device or press `r` in the terminal to reload
-- **Dev Menu**: Shake the device or press `Cmd+D` (iOS sim) / `Ctrl+M` (Android)
-- **TypeScript**: Run `npx tsc --noEmit` to check for type errors
-- **Clear Cache**: `npx expo start --clear`
-
----
-
-## Data Sources
-
-School data, statistics, and district information are sourced from:
-- [Forsyth County Schools Official Website](https://www.forsyth.k12.ga.us)
-- GHSA (Georgia High School Association)
-- FCS Annual Reports
-
----
-
-## License
-
-This application is developed for Forsyth County Schools. All school data, logos, and branding belong to Forsyth County Schools, Georgia.
+Change this in **Xcode → FCSSchools target → Signing & Capabilities** before submitting to the App Store.
