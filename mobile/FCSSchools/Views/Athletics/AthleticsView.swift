@@ -19,15 +19,15 @@ struct AthleticsView: View {
                 VStack(spacing: 0) {
                     // Hero
                     ZStack {
-                        AppColors.primary.frame(maxWidth: .infinity).frame(height: 90)
+                        DesignTokens.Colors.navy.frame(maxWidth: .infinity).frame(height: 90)
                         VStack(spacing: 4) {
                             Text("FCS ATHLETICS")
-                                .font(AppFonts.label(11))
+                                .font(DesignTokens.Typography.label(11))
                                 .kerning(2)
-                                .foregroundColor(AppColors.gold)
+                                .foregroundColor(DesignTokens.Colors.gold)
                             Text("Championship Programs")
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(.white)
+                                .foregroundColor(DesignTokens.Colors.textPrimary)
                         }
                     }
 
@@ -41,47 +41,49 @@ struct AthleticsView: View {
                                     Image(systemName: season.icon)
                                         .font(.system(size: 16))
                                     Text(season.displayName)
-                                        .font(AppFonts.caption(12))
+                                        .font(DesignTokens.Typography.caption(12))
                                         .fontWeight(.semibold)
                                 }
-                                .foregroundColor(selectedSeason == season ? AppColors.primary : .secondary)
+                                .foregroundColor(selectedSeason == season
+                                    ? DesignTokens.Colors.gold
+                                    : DesignTokens.Colors.textSecondary)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 12)
                                 .background(selectedSeason == season
-                                    ? AppColors.primary.opacity(0.08)
-                                    : Color(.systemBackground))
+                                    ? DesignTokens.Colors.gold.opacity(0.12)
+                                    : DesignTokens.Colors.surface1)
                             }
                         }
                     }
-                    .background(Color(.systemBackground))
-                    .overlay(Divider(), alignment: .bottom)
+                    .overlay(Divider().background(Color.white.opacity(0.15)), alignment: .bottom)
 
                     VStack(alignment: .leading, spacing: 16) {
                         // Sports Grid
                         Text("\(selectedSeason.displayName) Sports")
-                            .font(AppFonts.headline())
+                            .font(DesignTokens.Typography.headline())
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
                             .padding(.horizontal, 16)
                             .padding(.top, 20)
 
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                             ForEach(sportsForSeason) { sport in
-                                HStack(spacing: 10) {
-                                    Image(systemName: sport.icon)
-                                        .font(.system(size: 20))
-                                        .foregroundColor(AppColors.primary)
-                                        .frame(width: 36, height: 36)
-                                        .background(AppColors.primary.opacity(0.1))
-                                        .clipShape(Circle())
-                                    Text(sport.name)
-                                        .font(AppFonts.body(14))
-                                        .fontWeight(.semibold)
-                                        .lineLimit(2)
-                                    Spacer()
+                                GlassCard(.subtle) {
+                                    HStack(spacing: 10) {
+                                        Image(systemName: sport.icon)
+                                            .font(.system(size: 20))
+                                            .foregroundColor(DesignTokens.Colors.gold)
+                                            .frame(width: 36, height: 36)
+                                            .background(DesignTokens.Colors.gold.opacity(0.12))
+                                            .clipShape(Circle())
+                                        Text(sport.name)
+                                            .font(DesignTokens.Typography.body(14))
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(DesignTokens.Colors.textPrimary)
+                                            .lineLimit(2)
+                                        Spacer()
+                                    }
+                                    .padding(12)
                                 }
-                                .padding(12)
-                                .background(Color(.systemBackground))
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
                             }
                         }
                         .padding(.horizontal, 16)
@@ -89,7 +91,8 @@ struct AthleticsView: View {
                         // Games/Schedule
                         if !gamesForSeason.isEmpty {
                             Text("Recent & Upcoming Games")
-                                .font(AppFonts.headline())
+                                .font(DesignTokens.Typography.headline())
+                                .foregroundColor(DesignTokens.Colors.textPrimary)
                                 .padding(.horizontal, 16)
                                 .padding(.top, 8)
 
@@ -99,8 +102,8 @@ struct AthleticsView: View {
                             }
                         } else {
                             Text("No games scheduled yet for \(selectedSeason.displayName).")
-                                .font(AppFonts.body())
-                                .foregroundColor(.secondary)
+                                .font(DesignTokens.Typography.body())
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                                 .padding(.horizontal, 16)
                                 .padding(.top, 8)
                         }
@@ -108,10 +111,13 @@ struct AthleticsView: View {
                     .padding(.bottom, 32)
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(.clear)
             .navigationTitle("Athletics")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.clear, for: .navigationBar)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -122,61 +128,62 @@ struct GameRowView: View {
         return f.string(from: game.date)
     }
     var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text(game.sport.uppercased())
-                    .font(AppFonts.label(10))
-                    .kerning(0.5)
-                    .foregroundColor(AppColors.primary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 3)
-                    .background(AppColors.primary.opacity(0.1))
-                    .cornerRadius(4)
-                Spacer()
-                StatusBadge(status: game.status)
-                Text(dateStr)
-                    .font(AppFonts.caption())
-                    .foregroundColor(.secondary)
+        GlassCard(.elevated) {
+            VStack(spacing: 10) {
+                HStack {
+                    Text(game.sport.uppercased())
+                        .font(DesignTokens.Typography.label(10))
+                        .kerning(0.5)
+                        .foregroundColor(DesignTokens.Colors.navy)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(DesignTokens.Colors.gold)
+                        .cornerRadius(4)
+                    Spacer()
+                    StatusBadge(status: game.status)
+                    Text(dateStr)
+                        .font(DesignTokens.Typography.caption())
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
+                }
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(game.homeTeam)
+                            .font(DesignTokens.Typography.subheadline())
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
+                            .lineLimit(1)
+                        Text("HOME")
+                            .font(DesignTokens.Typography.label(10))
+                            .foregroundColor(DesignTokens.Colors.textSecondary)
+                    }
+                    Spacer()
+                    if game.status == .completed, let hs = game.homeScore, let as_ = game.awayScore {
+                        Text("\(hs) – \(as_)")
+                            .font(.system(size: 20, weight: .heavy, design: .monospaced))
+                            .foregroundColor(DesignTokens.Colors.gold)
+                    } else {
+                        Text("vs")
+                            .font(DesignTokens.Typography.subheadline())
+                            .foregroundColor(DesignTokens.Colors.textSecondary)
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text(game.awayTeam)
+                            .font(DesignTokens.Typography.subheadline())
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
+                            .multilineTextAlignment(.trailing)
+                            .lineLimit(1)
+                        Text("AWAY")
+                            .font(DesignTokens.Typography.label(10))
+                            .foregroundColor(DesignTokens.Colors.textSecondary)
+                    }
+                }
+                Label(game.location, systemImage: "mappin")
+                    .font(DesignTokens.Typography.caption())
+                    .foregroundColor(DesignTokens.Colors.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(game.homeTeam)
-                        .font(AppFonts.subheadline())
-                        .lineLimit(1)
-                    Text("HOME")
-                        .font(AppFonts.label(10))
-                        .foregroundColor(.secondary)
-                }
-                Spacer()
-                if game.status == .completed, let hs = game.homeScore, let as_ = game.awayScore {
-                    Text("\(hs) – \(as_)")
-                        .font(.system(size: 20, weight: .heavy, design: .monospaced))
-                        .foregroundColor(AppColors.primary)
-                } else {
-                    Text("vs")
-                        .font(AppFonts.subheadline())
-                        .foregroundColor(.secondary)
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text(game.awayTeam)
-                        .font(AppFonts.subheadline())
-                        .multilineTextAlignment(.trailing)
-                        .lineLimit(1)
-                    Text("AWAY")
-                        .font(AppFonts.label(10))
-                        .foregroundColor(.secondary)
-                }
-            }
-            Label(game.location, systemImage: "mappin")
-                .font(AppFonts.caption())
-                .foregroundColor(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
         }
-        .padding(14)
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
     }
 }
 
@@ -184,19 +191,19 @@ struct StatusBadge: View {
     let status: GameStatus
     var body: some View {
         Text(status == .completed ? "FINAL" : status == .live ? "LIVE" : "UPCOMING")
-            .font(AppFonts.label(10))
+            .font(DesignTokens.Typography.label(10))
             .kerning(0.5)
             .foregroundColor(statusColor)
             .padding(.horizontal, 7)
             .padding(.vertical, 3)
-            .background(statusColor.opacity(0.12))
+            .background(statusColor.opacity(0.15))
             .cornerRadius(4)
     }
     private var statusColor: Color {
         switch status {
-        case .completed: return .secondary
-        case .live: return .red
-        case .upcoming: return AppColors.primary
+        case .completed: return DesignTokens.Colors.textSecondary
+        case .live:      return .red
+        case .upcoming:  return DesignTokens.Colors.gold
         }
     }
 }

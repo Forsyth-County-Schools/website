@@ -4,14 +4,14 @@ import MapKit
 struct SchoolDetailView: View {
     let school: School
 
-    @State private var region: MKCoordinateRegion
+    @State private var position: MapCameraPosition
 
     init(school: School) {
         self.school = school
-        _region = State(initialValue: MKCoordinateRegion(
+        _position = State(initialValue: .region(MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: school.latitude, longitude: school.longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        ))
+        )))
     }
 
     var body: some View {
@@ -84,10 +84,10 @@ struct SchoolDetailView: View {
                                 .foregroundColor(DesignTokens.Colors.textPrimary)
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
-                            Map(coordinateRegion: $region, annotationItems: [school]) { s in
-                                MapMarker(coordinate: CLLocationCoordinate2D(
-                                    latitude: s.latitude, longitude: s.longitude),
-                                    tint: DesignTokens.Colors.gold)
+                            Map(position: $position) {
+                                Marker(school.name, coordinate: CLLocationCoordinate2D(
+                                    latitude: school.latitude, longitude: school.longitude))
+                                    .tint(DesignTokens.Colors.gold)
                             }
                             .frame(height: 200)
                             .cornerRadius(12)
