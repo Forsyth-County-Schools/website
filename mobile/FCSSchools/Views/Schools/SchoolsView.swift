@@ -20,21 +20,24 @@ struct SchoolsView: View {
             VStack(spacing: 0) {
                 // Search
                 HStack(spacing: 10) {
-                    Image(systemName: "magnifyingglass").foregroundColor(.secondary)
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                     TextField("Search schools…", text: $searchText)
-                        .font(AppFonts.body())
+                        .font(DesignTokens.Typography.body())
+                        .foregroundColor(DesignTokens.Colors.textPrimary)
+                        .tint(DesignTokens.Colors.gold)
                     if !searchText.isEmpty {
                         Button { searchText = "" } label: {
-                            Image(systemName: "xmark.circle.fill").foregroundColor(.secondary)
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                         }
                     }
                 }
                 .padding(10)
-                .background(Color(.systemBackground))
+                .background(DesignTokens.Colors.surface2)
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-                .background(Color(.systemGroupedBackground))
 
                 // Level filter
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -53,18 +56,16 @@ struct SchoolsView: View {
                     .padding(.horizontal, 16)
                     .padding(.bottom, 12)
                 }
-                .background(Color(.systemGroupedBackground))
 
                 // Results count
                 HStack {
                     Text("\(filtered.count) school\(filtered.count == 1 ? "" : "s")")
-                        .font(AppFonts.caption())
-                        .foregroundColor(.secondary)
+                        .font(DesignTokens.Typography.caption())
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                     Spacer()
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(Color(.systemGroupedBackground))
 
                 // School list
                 ScrollView(showsIndicators: false) {
@@ -80,10 +81,13 @@ struct SchoolsView: View {
                     .padding(.vertical, 12)
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(.clear)
             .navigationTitle("Schools Directory")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.clear, for: .navigationBar)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -94,12 +98,12 @@ struct LevelChip: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(AppFonts.caption(13))
+                .font(DesignTokens.Typography.caption(13))
                 .fontWeight(.semibold)
-                .foregroundColor(isSelected ? .white : AppColors.primary)
+                .foregroundColor(isSelected ? DesignTokens.Colors.navy : DesignTokens.Colors.gold)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
-                .background(isSelected ? AppColors.primary : AppColors.primary.opacity(0.1))
+                .background(isSelected ? DesignTokens.Colors.gold : DesignTokens.Colors.gold.opacity(0.15))
                 .cornerRadius(20)
         }
     }

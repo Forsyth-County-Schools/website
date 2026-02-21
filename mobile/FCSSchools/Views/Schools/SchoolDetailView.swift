@@ -4,14 +4,14 @@ import MapKit
 struct SchoolDetailView: View {
     let school: School
 
-    @State private var region: MKCoordinateRegion
+    @State private var position: MapCameraPosition
 
     init(school: School) {
         self.school = school
-        _region = State(initialValue: MKCoordinateRegion(
+        _position = State(initialValue: .region(MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: school.latitude, longitude: school.longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        ))
+        )))
     }
 
     var body: some View {
@@ -19,16 +19,16 @@ struct SchoolDetailView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header Banner
                 ZStack(alignment: .bottomLeading) {
-                    AppColors.primary
+                    DesignTokens.Colors.navy
                         .frame(height: 160)
                     VStack(alignment: .leading, spacing: 6) {
                         LevelBadge(level: school.level)
                         Text(school.name)
                             .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
                         Text("Est. \(school.established) · \(school.mascot)")
-                            .font(AppFonts.body(14))
-                            .foregroundColor(.white.opacity(0.8))
+                            .font(DesignTokens.Typography.body(14))
+                            .foregroundColor(DesignTokens.Colors.textSecondary)
                     }
                     .padding(20)
                 }
@@ -52,68 +52,70 @@ struct SchoolDetailView: View {
                     }
 
                     // Description
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("About")
-                            .font(AppFonts.subheadline())
-                        Text(school.description)
-                            .font(AppFonts.body())
-                            .foregroundColor(.secondary)
-                            .lineSpacing(4)
+                    GlassCard(.elevated) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("About")
+                                .font(DesignTokens.Typography.subheadline())
+                                .foregroundColor(DesignTokens.Colors.textPrimary)
+                            Text(school.description)
+                                .font(DesignTokens.Typography.body())
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
+                                .lineSpacing(4)
+                        }
+                        .padding(16)
                     }
-                    .padding(16)
-                    .background(Color(.systemBackground))
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
 
                     // Features
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Highlights")
-                            .font(AppFonts.subheadline())
-                        FlexWrap(items: school.features)
+                    GlassCard(.elevated) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Highlights")
+                                .font(DesignTokens.Typography.subheadline())
+                                .foregroundColor(DesignTokens.Colors.textPrimary)
+                            FlexWrap(items: school.features)
+                        }
+                        .padding(16)
                     }
-                    .padding(16)
-                    .background(Color(.systemBackground))
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
 
                     // Map
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Location")
-                            .font(AppFonts.subheadline())
+                    GlassCard(.elevated) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Location")
+                                .font(DesignTokens.Typography.subheadline())
+                                .foregroundColor(DesignTokens.Colors.textPrimary)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 16)
+                            Map(position: $position) {
+                                Marker(school.name, coordinate: CLLocationCoordinate2D(
+                                    latitude: school.latitude, longitude: school.longitude))
+                                    .tint(DesignTokens.Colors.gold)
+                            }
+                            .frame(height: 200)
+                            .cornerRadius(12)
                             .padding(.horizontal, 16)
-                            .padding(.top, 16)
-                        Map(coordinateRegion: $region, annotationItems: [school]) { s in
-                            MapMarker(coordinate: CLLocationCoordinate2D(
-                                latitude: s.latitude, longitude: s.longitude),
-                                tint: AppColors.primary)
-                        }
-                        .frame(height: 200)
-                        .cornerRadius(12)
-                        .padding(.horizontal, 16)
 
-                        Button {
-                            openInMaps()
-                        } label: {
-                            Label("Get Directions", systemImage: "arrow.triangle.turn.up.right.circle")
-                                .font(AppFonts.subheadline())
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 12)
-                                .background(AppColors.primary)
-                                .cornerRadius(10)
+                            Button {
+                                openInMaps()
+                            } label: {
+                                Label("Get Directions", systemImage: "arrow.triangle.turn.up.right.circle")
+                                    .font(DesignTokens.Typography.subheadline())
+                                    .foregroundColor(DesignTokens.Colors.navy)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(DesignTokens.Colors.gold)
+                                    .cornerRadius(10)
+                            }
+                            .padding([.horizontal, .bottom], 16)
                         }
-                        .padding([.horizontal, .bottom], 16)
                     }
-                    .background(Color(.systemBackground))
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
                 }
                 .padding(16)
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(.clear)
         .navigationTitle(school.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.clear, for: .navigationBar)
     }
 
     private func openInMaps() {
@@ -129,7 +131,7 @@ struct LevelBadge: View {
     let level: SchoolLevel
     var body: some View {
         Text(level.displayName.uppercased())
-            .font(AppFonts.label(10))
+            .font(DesignTokens.Typography.label(10))
             .kerning(1)
             .foregroundColor(.white)
             .padding(.horizontal, 10)
@@ -143,15 +145,15 @@ struct InfoSection<Content: View>: View {
     let title: String
     @ViewBuilder let content: Content
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(title)
-                .font(AppFonts.subheadline())
-            content
+        GlassCard(.elevated) {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(title)
+                    .font(DesignTokens.Typography.subheadline())
+                    .foregroundColor(DesignTokens.Colors.textPrimary)
+                content
+            }
+            .padding(16)
         }
-        .padding(16)
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 1)
     }
 }
 
@@ -162,11 +164,11 @@ struct InfoRow: View {
         HStack(alignment: .top, spacing: 10) {
             Image(systemName: icon)
                 .font(.system(size: 14))
-                .foregroundColor(AppColors.primary)
+                .foregroundColor(DesignTokens.Colors.gold)
                 .frame(width: 20)
             Text(label)
-                .font(AppFonts.body(14))
-                .foregroundColor(.primary)
+                .font(DesignTokens.Typography.body(14))
+                .foregroundColor(DesignTokens.Colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -192,11 +194,11 @@ struct FlexWrap: View {
                 HStack(spacing: 6) {
                     ForEach(lines[i], id: \.self) { item in
                         Text(item)
-                            .font(AppFonts.caption(13))
-                            .foregroundColor(AppColors.primary)
+                            .font(DesignTokens.Typography.caption(13))
+                            .foregroundColor(DesignTokens.Colors.gold)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 5)
-                            .background(AppColors.primary.opacity(0.1))
+                            .background(DesignTokens.Colors.gold.opacity(0.15))
                             .cornerRadius(8)
                     }
                 }
