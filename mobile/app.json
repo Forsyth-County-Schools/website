@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "FCS Schools",
+    "slug": "fcs-schools",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "fcsschools",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#003087"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.forsythcountyschools.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#003087"
+      },
+      "package": "com.forsythcountyschools.app"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
