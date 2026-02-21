@@ -10,47 +10,52 @@ struct NewsDetailView: View {
                 // Category + Date
                 HStack {
                     Text(article.category.uppercased())
-                        .font(AppFonts.label(11))
+                        .font(DesignTokens.Typography.label(11))
                         .kerning(0.5)
-                        .foregroundColor(AppColors.primary)
+                        .foregroundColor(DesignTokens.Colors.navy)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
-                        .background(AppColors.primary.opacity(0.1))
+                        .background(DesignTokens.Colors.gold)
                         .cornerRadius(4)
                     Spacer()
                     Text(article.formattedDate)
-                        .font(AppFonts.caption())
-                        .foregroundColor(.secondary)
+                        .font(DesignTokens.Typography.caption())
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                 }
 
                 Text(article.title)
                     .font(.system(size: 22, weight: .bold))
+                    .foregroundColor(DesignTokens.Colors.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack {
                     Image(systemName: "person.circle.fill")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                     Text(article.author)
-                        .font(AppFonts.body())
-                        .foregroundColor(.secondary)
+                        .font(DesignTokens.Typography.body())
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                 }
 
-                Divider()
+                Divider().background(Color.white.opacity(0.15))
 
                 Text(article.content)
-                    .font(AppFonts.body())
+                    .font(DesignTokens.Typography.body())
+                    .foregroundColor(DesignTokens.Colors.textPrimary)
                     .lineSpacing(6)
                     .fixedSize(horizontal: false, vertical: true)
 
-                Divider()
+                Divider().background(Color.white.opacity(0.15))
 
                 // Tags
                 FlowLayout(tags: article.tags)
             }
             .padding(20)
         }
+        .background(.clear)
         .navigationTitle("Article")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.clear, for: .navigationBar)
     }
 }
 
@@ -59,16 +64,16 @@ struct FlowLayout: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Tags")
-                .font(AppFonts.caption())
-                .foregroundColor(.secondary)
+                .font(DesignTokens.Typography.caption())
+                .foregroundColor(DesignTokens.Colors.textSecondary)
             HStack(spacing: 6) {
                 ForEach(tags, id: \.self) { tag in
                     Text(tag)
-                        .font(AppFonts.caption(12))
-                        .foregroundColor(.secondary)
+                        .font(DesignTokens.Typography.caption(12))
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
-                        .background(Color(.systemGray6))
+                        .background(Color.white.opacity(0.08))
                         .cornerRadius(6)
                 }
             }

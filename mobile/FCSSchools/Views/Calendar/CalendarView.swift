@@ -49,27 +49,31 @@ struct CalendarView: View {
                     // Month navigator
                     HStack {
                         Button { shiftMonth(-1) } label: {
-                            Image(systemName: "chevron.left").padding(8)
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(DesignTokens.Colors.gold)
+                                .padding(8)
                         }
                         Spacer()
                         Text(monthTitle)
-                            .font(AppFonts.subheadline(17))
+                            .font(DesignTokens.Typography.subheadline(17))
                             .fontWeight(.bold)
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
                         Spacer()
                         Button { shiftMonth(1) } label: {
-                            Image(systemName: "chevron.right").padding(8)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(DesignTokens.Colors.gold)
+                                .padding(8)
                         }
                     }
                     .padding(.horizontal, 12)
                     .padding(.top, 8)
-                    .foregroundColor(AppColors.primary)
 
                     // Weekday headers
                     HStack {
                         ForEach(["Su","Mo","Tu","We","Th","Fr","Sa"], id: \.self) { d in
                             Text(d)
-                                .font(AppFonts.label(12))
-                                .foregroundColor(.secondary)
+                                .font(DesignTokens.Typography.label(12))
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                                 .frame(maxWidth: .infinity)
                         }
                     }
@@ -102,7 +106,9 @@ struct CalendarView: View {
                             ForEach(EventCategory.allCases, id: \.self) { cat in
                                 HStack(spacing: 4) {
                                     Circle().fill(cat.color).frame(width: 8, height: 8)
-                                    Text(cat.displayName).font(AppFonts.caption(12)).foregroundColor(.secondary)
+                                    Text(cat.displayName)
+                                        .font(DesignTokens.Typography.caption(12))
+                                        .foregroundColor(DesignTokens.Colors.textSecondary)
                                 }
                             }
                         }
@@ -110,20 +116,21 @@ struct CalendarView: View {
                     }
                     .padding(.bottom, 16)
 
-                    Divider()
+                    Divider().background(Color.white.opacity(0.15))
 
                     // Events for selected date OR upcoming
                     let events = selectedDate != nil ? eventsForSelected : upcomingEvents
                     VStack(alignment: .leading, spacing: 12) {
                         Text(selectedDate != nil ? "Events on this day" : "Upcoming Events")
-                            .font(AppFonts.subheadline())
+                            .font(DesignTokens.Typography.subheadline())
+                            .foregroundColor(DesignTokens.Colors.textPrimary)
                             .padding(.horizontal, 16)
                             .padding(.top, 16)
 
                         if events.isEmpty {
                             Text("No events")
-                                .font(AppFonts.body())
-                                .foregroundColor(.secondary)
+                                .font(DesignTokens.Typography.body())
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                                 .padding(.horizontal, 16)
                         } else {
                             ForEach(events) { event in
@@ -135,10 +142,13 @@ struct CalendarView: View {
                     .padding(.bottom, 32)
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(.clear)
             .navigationTitle("Calendar")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.clear, for: .navigationBar)
         }
+        .navigationViewStyle(.stack)
     }
 
     private func shiftMonth(_ delta: Int) {
@@ -162,12 +172,20 @@ struct DayCell: View {
         VStack(spacing: 2) {
             Text("\(day)")
                 .font(.system(size: 15, weight: isToday ? .bold : .regular))
-                .foregroundColor(isSelected ? .white : (isToday ? AppColors.primary : .primary))
+                .foregroundColor(
+                    isSelected ? DesignTokens.Colors.navy
+                    : isToday  ? DesignTokens.Colors.gold
+                    : DesignTokens.Colors.textPrimary
+                )
                 .frame(width: 36, height: 36)
-                .background(isSelected ? AppColors.primary : Color.clear)
+                .background(
+                    isSelected ? DesignTokens.Colors.gold
+                    : isToday  ? DesignTokens.Colors.gold.opacity(0.20)
+                    : Color.clear
+                )
                 .clipShape(Circle())
             Circle()
-                .fill(hasEvent ? AppColors.gold : Color.clear)
+                .fill(hasEvent ? DesignTokens.Colors.gold : Color.clear)
                 .frame(width: 5, height: 5)
         }
     }
@@ -181,30 +199,30 @@ struct EventRow: View {
         return f.string(from: event.startDate)
     }
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            RoundedRectangle(cornerRadius: 3)
-                .fill(event.category.color)
-                .frame(width: 4)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(event.title)
-                    .font(AppFonts.subheadline())
-                Text(dateStr)
-                    .font(AppFonts.caption())
-                    .foregroundColor(.secondary)
-                if !event.location.isEmpty {
-                    Label(event.location, systemImage: "mappin")
-                        .font(AppFonts.caption())
-                        .foregroundColor(.secondary)
+        GlassCard(.subtle) {
+            HStack(alignment: .top, spacing: 12) {
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(event.category.color)
+                    .frame(width: 4)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(event.title)
+                        .font(DesignTokens.Typography.subheadline())
+                        .foregroundColor(DesignTokens.Colors.textPrimary)
+                    Text(dateStr)
+                        .font(DesignTokens.Typography.caption())
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
+                    if !event.location.isEmpty {
+                        Label(event.location, systemImage: "mappin")
+                            .font(DesignTokens.Typography.caption())
+                            .foregroundColor(DesignTokens.Colors.textSecondary)
+                    }
+                    Text(event.description)
+                        .font(DesignTokens.Typography.body(14))
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
+                        .lineLimit(2)
                 }
-                Text(event.description)
-                    .font(AppFonts.body(14))
-                    .foregroundColor(.secondary)
-                    .lineLimit(2)
             }
+            .padding(12)
         }
-        .padding(12)
-        .background(Color(.systemBackground))
-        .cornerRadius(10)
-        .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: 1)
     }
 }

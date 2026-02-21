@@ -24,16 +24,17 @@ struct NewsView: View {
                 // Search
                 HStack(spacing: 10) {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(DesignTokens.Colors.textSecondary)
                     TextField("Search news…", text: $searchText)
-                        .font(AppFonts.body())
+                        .font(DesignTokens.Typography.body())
+                        .foregroundColor(DesignTokens.Colors.textPrimary)
+                        .tint(DesignTokens.Colors.gold)
                 }
                 .padding(10)
-                .background(Color(.systemBackground))
+                .background(DesignTokens.Colors.surface2)
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
-                .background(Color(.systemGroupedBackground))
 
                 // Category Chips
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -50,7 +51,6 @@ struct NewsView: View {
                     .padding(.horizontal, 16)
                     .padding(.bottom, 12)
                 }
-                .background(Color(.systemGroupedBackground))
 
                 // Articles
                 ScrollView(showsIndicators: false) {
@@ -69,20 +69,23 @@ struct NewsView: View {
                         VStack(spacing: 12) {
                             Image(systemName: "newspaper")
                                 .font(.system(size: 44))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                             Text("No articles found")
-                                .font(AppFonts.subheadline())
-                                .foregroundColor(.secondary)
+                                .font(DesignTokens.Typography.subheadline())
+                                .foregroundColor(DesignTokens.Colors.textSecondary)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.top, 60)
                     }
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(.clear)
             .navigationTitle("News & Announcements")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.clear, for: .navigationBar)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -93,12 +96,12 @@ struct CategoryChip: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(AppFonts.caption(13))
+                .font(DesignTokens.Typography.caption(13))
                 .fontWeight(.semibold)
-                .foregroundColor(isSelected ? .white : AppColors.primary)
+                .foregroundColor(isSelected ? DesignTokens.Colors.navy : DesignTokens.Colors.gold)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
-                .background(isSelected ? AppColors.primary : AppColors.primary.opacity(0.1))
+                .background(isSelected ? DesignTokens.Colors.gold : DesignTokens.Colors.gold.opacity(0.15))
                 .cornerRadius(20)
         }
     }
