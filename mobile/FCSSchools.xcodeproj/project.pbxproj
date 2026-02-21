@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* App.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002 /* ContentView.swift */; };
+		AA000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100003 /* Theme.swift */; };
+		AA000004 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004 /* School.swift */; };
+		AA000005 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100005 /* News.swift */; };
+		AA000006 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100006 /* CalendarEvent.swift */; };
+		AA000007 /* Athletics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100007 /* Athletics.swift */; };
+		AA000008 /* SchoolData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100008 /* SchoolData.swift */; };
+		AA000009 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100009 /* NewsData.swift */; };
+		AA000010 /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100010 /* EventData.swift */; };
+		AA000011 /* AthleticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100011 /* AthleticsData.swift */; };
+		AA000012 /* SchoolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100012 /* SchoolCardView.swift */; };
+		AA000013 /* NewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100013 /* NewsCardView.swift */; };
+		AA000014 /* StatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100014 /* StatCardView.swift */; };
+		AA000015 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100015 /* HomeView.swift */; };
+		AA000016 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100016 /* NewsView.swift */; };
+		AA000017 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100017 /* NewsDetailView.swift */; };
+		AA000018 /* SchoolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100018 /* SchoolsView.swift */; };
+		AA000019 /* SchoolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100019 /* SchoolDetailView.swift */; };
+		AA000020 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100020 /* CalendarView.swift */; };
+		AA000021 /* AthleticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100021 /* AthleticsView.swift */; };
+		AA000022 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100022 /* MoreView.swift */; };
+		AA000023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100023 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA100001 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		AA100002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA100003 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA100004 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		AA100005 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		AA100006 /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		AA100007 /* Athletics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athletics.swift; sourceTree = "<group>"; };
+		AA100008 /* SchoolData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolData.swift; sourceTree = "<group>"; };
+		AA100009 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
+		AA100010 /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
+		AA100011 /* AthleticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleticsData.swift; sourceTree = "<group>"; };
+		AA100012 /* SchoolCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolCardView.swift; sourceTree = "<group>"; };
+		AA100013 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCardView.swift; sourceTree = "<group>"; };
+		AA100014 /* StatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCardView.swift; sourceTree = "<group>"; };
+		AA100015 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AA100016 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		AA100017 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
+		AA100018 /* SchoolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolsView.swift; sourceTree = "<group>"; };
+		AA100019 /* SchoolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailView.swift; sourceTree = "<group>"; };
+		AA100020 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		AA100021 /* AthleticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleticsView.swift; sourceTree = "<group>"; };
+		AA100022 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		AA100023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA100024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA200001 /* FCSSchools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FCSSchools.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA300001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA400001 /* FCSSchools */ = {
+			isa = PBXGroup;
+			children = (
+				AA100001 /* App.swift */,
+				AA100002 /* ContentView.swift */,
+				AA100023 /* Assets.xcassets */,
+				AA100024 /* Info.plist */,
+				AA500001 /* Models */,
+				AA500002 /* Data */,
+				AA500003 /* Components */,
+				AA500004 /* Views */,
+			);
+			path = FCSSchools;
+			sourceTree = "<group>";
+		};
+		AA400000 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				AA400001 /* FCSSchools */,
+				AA400002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA400002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA200001 /* FCSSchools.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA500001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA100003 /* Theme.swift */,
+				AA100004 /* School.swift */,
+				AA100005 /* News.swift */,
+				AA100006 /* CalendarEvent.swift */,
+				AA100007 /* Athletics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA500002 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AA100008 /* SchoolData.swift */,
+				AA100009 /* NewsData.swift */,
+				AA100010 /* EventData.swift */,
+				AA100011 /* AthleticsData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AA500003 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA100012 /* SchoolCardView.swift */,
+				AA100013 /* NewsCardView.swift */,
+				AA100014 /* StatCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AA500004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA500010 /* Home */,
+				AA500011 /* News */,
+				AA500012 /* Schools */,
+				AA500013 /* Calendar */,
+				AA500014 /* Athletics */,
+				AA500015 /* More */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA500010 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				AA100015 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		AA500011 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				AA100016 /* NewsView.swift */,
+				AA100017 /* NewsDetailView.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		AA500012 /* Schools */ = {
+			isa = PBXGroup;
+			children = (
+				AA100018 /* SchoolsView.swift */,
+				AA100019 /* SchoolDetailView.swift */,
+			);
+			path = Schools;
+			sourceTree = "<group>";
+		};
+		AA500013 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				AA100020 /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		AA500014 /* Athletics */ = {
+			isa = PBXGroup;
+			children = (
+				AA100021 /* AthleticsView.swift */,
+			);
+			path = Athletics;
+			sourceTree = "<group>";
+		};
+		AA500015 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				AA100022 /* MoreView.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA600001 /* FCSSchools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA700002 /* Build configuration list for PBXNativeTarget "FCSSchools" */;
+			buildPhases = (
+				AA800001 /* Sources */,
+				AA300001 /* Frameworks */,
+				AA800002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FCSSchools;
+			productName = FCSSchools;
+			productReference = AA200001 /* FCSSchools.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA900001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA600001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA700001 /* Build configuration list for PBXProject "FCSSchools" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA400000 /* Root */;
+			productRefGroup = AA400002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA600001 /* FCSSchools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA800002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000023 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA800001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* App.swift in Sources */,
+				AA000002 /* ContentView.swift in Sources */,
+				AA000003 /* Theme.swift in Sources */,
+				AA000004 /* School.swift in Sources */,
+				AA000005 /* News.swift in Sources */,
+				AA000006 /* CalendarEvent.swift in Sources */,
+				AA000007 /* Athletics.swift in Sources */,
+				AA000008 /* SchoolData.swift in Sources */,
+				AA000009 /* NewsData.swift in Sources */,
+				AA000010 /* EventData.swift in Sources */,
+				AA000011 /* AthleticsData.swift in Sources */,
+				AA000012 /* SchoolCardView.swift in Sources */,
+				AA000013 /* NewsCardView.swift in Sources */,
+				AA000014 /* StatCardView.swift in Sources */,
+				AA000015 /* HomeView.swift in Sources */,
+				AA000016 /* NewsView.swift in Sources */,
+				AA000017 /* NewsDetailView.swift in Sources */,
+				AA000018 /* SchoolsView.swift in Sources */,
+				AA000019 /* SchoolDetailView.swift in Sources */,
+				AA000020 /* CalendarView.swift in Sources */,
+				AA000021 /* AthleticsView.swift in Sources */,
+				AA000022 /* MoreView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA700010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA700011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA700020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FCSSchools/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forsythcountyschools.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA700021 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FCSSchools/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forsythcountyschools.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA700001 /* Build configuration list for PBXProject "FCSSchools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA700010 /* Debug */,
+				AA700011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA700002 /* Build configuration list for PBXNativeTarget "FCSSchools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA700020 /* Debug */,
+				AA700021 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA900001 /* Project object */;
+}
